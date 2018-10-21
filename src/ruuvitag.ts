@@ -1,51 +1,51 @@
 export class RuuviTagBroadcast {
   id: number
   mac: number | null
-  temperature_c: number | null
-  pressure_pa: number | null
-  humidity_rh: number | null
-  batteryVoltage_v: number | null
-  accelerationX_g: number | null
-  accelerationY_g: number | null
-  accelerationZ_g: number | null
+  temperatureC: number | null
+  pressurePa: number | null
+  humidityRh: number | null
+  batteryVoltageV: number | null
+  accelerationXG: number | null
+  accelerationYG: number | null
+  accelerationZG: number | null
   movementCounter: number | null
   measurementSequence: number | null
-  txPower_dbm: number | null
-  rssi_db: number | null
+  txPowerDBm: number | null
+  rssiDB: number | null
   dataFormat: number | null
   parsedAt: Date
 
   public constructor(
     id: number = 0,
     mac: number | null = null,
-    temperature_c: number | null = null,
-    pressure_pa: number | null = null,
-    humidity_rh: number | null = null,
-    batteryVoltage_v: number | null = null,
-    accelerationX_g: number | null = null,
-    accelerationY_g: number | null = null,
-    accelerationZ_g: number | null = null,
+    temperatureC: number | null = null,
+    pressurePa: number | null = null,
+    humidityRh: number | null = null,
+    batteryVoltageV: number | null = null,
+    accelerationXG: number | null = null,
+    accelerationYG: number | null = null,
+    accelerationZG: number | null = null,
     movementCounter: number | null = null,
     measurementSequence: number | null = null,
-    txPower_dbm: number | null = null,
-    rssi_db: number | null = null,
+    txPowerDBm: number | null = null,
+    rssiDB: number | null = null,
     dataFormat: number | null = null,
     parsedAt: Date = new Date()
     ) 
   {
     this.id = id;
     this.mac = mac;
-    this.temperature_c = temperature_c;
-    this.pressure_pa = pressure_pa;
-    this.humidity_rh = humidity_rh;
-    this.batteryVoltage_v = batteryVoltage_v;
-    this.accelerationX_g = accelerationX_g;
-    this.accelerationY_g = accelerationY_g;
-    this.accelerationZ_g = accelerationZ_g;
+    this.temperatureC = temperatureC;
+    this.pressurePa = pressurePa;
+    this.humidityRh = humidityRh;
+    this.batteryVoltageV = batteryVoltageV;
+    this.accelerationXG = accelerationXG;
+    this.accelerationYG = accelerationYG;
+    this.accelerationZG = accelerationZG;
     this.movementCounter = movementCounter;
     this.measurementSequence = measurementSequence;
-    this.txPower_dbm = txPower_dbm;
-    this.rssi_db = rssi_db;
+    this.txPowerDBm = txPowerDBm;
+    this.rssiDB = rssiDB;
     this.dataFormat = dataFormat;
     this.parsedAt = parsedAt
   }
