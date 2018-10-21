@@ -19,13 +19,13 @@ test('test_df3decode_is_valid', () => {
     let data: Uint8Array = hexStringToByte('03291A1ECE1EFC18F94202CA0B53');
     let tag: RuuviTagBroadcast = df3parser(data);
     expect(tag.dataFormat).toBe(3);
-    expect(tag.temperature_c).toBeCloseTo(26.3, 1);
-    expect(tag.pressure_pa).toBe(102766);
-    expect(tag.humidity_rh).toBeCloseTo(20.5, 1);
-    expect(tag.batteryVoltage_v).toBeCloseTo(2.899, 3);
-    expect(tag.accelerationX_g).toBeCloseTo(-1.000, 3);
-    expect(tag.accelerationY_g).toBeCloseTo(-1.726, 3);
-    expect(tag.accelerationZ_g).toBeCloseTo(0.714, 3);
+    expect(tag.temperatureC).toBeCloseTo(26.3, 1);
+    expect(tag.pressurePa).toBe(102766);
+    expect(tag.humidityRh).toBeCloseTo(20.5, 1);
+    expect(tag.batteryVoltageV).toBeCloseTo(2.899, 3);
+    expect(tag.accelerationXG).toBeCloseTo(-1.000, 3);
+    expect(tag.accelerationYG).toBeCloseTo(-1.726, 3);
+    expect(tag.accelerationZG).toBeCloseTo(0.714, 3);
 });
 
 
@@ -42,13 +42,13 @@ test('test_df3decode_is_valid_max_values', () => {
 
     let tag: RuuviTagBroadcast = df3parser(data);
     expect(tag.dataFormat).toBe(3);
-    expect(tag.temperature_c).toBeCloseTo(127.99, 2);
-    expect(tag.pressure_pa).toBe(115535);
-    expect(tag.humidity_rh).toBe(100.0);
-    expect(tag.batteryVoltage_v).toBeCloseTo(65.535, 3);
-    expect(tag.accelerationX_g).toBeCloseTo(1.000, 3);
-    expect(tag.accelerationY_g).toBeCloseTo(1.000, 3);
-    expect(tag.accelerationZ_g).toBeCloseTo(1.000, 3);
+    expect(tag.temperatureC).toBeCloseTo(127.99, 2);
+    expect(tag.pressurePa).toBe(115535);
+    expect(tag.humidityRh).toBe(100.0);
+    expect(tag.batteryVoltageV).toBeCloseTo(65.535, 3);
+    expect(tag.accelerationXG).toBeCloseTo(1.000, 3);
+    expect(tag.accelerationYG).toBeCloseTo(1.000, 3);
+    expect(tag.accelerationZG).toBeCloseTo(1.000, 3);
 });
 
 test('test_df3decode_is_valid_min_values', () => {
@@ -64,12 +64,12 @@ test('test_df3decode_is_valid_min_values', () => {
 
     let tag: RuuviTagBroadcast = df3parser(data);
     expect(tag.dataFormat).toBe(3);
-    expect(tag.temperature_c).toBeCloseTo(-127.99, 2);
-    expect(tag.pressure_pa).toBe(50000);
-    expect(tag.humidity_rh).toBeCloseTo(0.0, 1);
-    expect(tag.batteryVoltage_v).toBeCloseTo(0, 1);
-    expect(tag.accelerationX_g).toBeCloseTo(-1.000, 3);
-    expect(tag.accelerationY_g).toBeCloseTo(-1.000, 3);
-    expect(tag.accelerationZ_g).toBeCloseTo(-1.000, 3);
+    expect(tag.temperatureC).toBeCloseTo(-127.99, 2);
+    expect(tag.pressurePa).toBe(50000);
+    expect(tag.humidityRh).toBeCloseTo(0.0, 1);
+    expect(tag.batteryVoltageV).toBeCloseTo(0, 1);
+    expect(tag.accelerationXG).toBeCloseTo(-1.000, 3);
+    expect(tag.accelerationYG).toBeCloseTo(-1.000, 3);
+    expect(tag.accelerationZG).toBeCloseTo(-1.000, 3);
 
 });

@@ -1,19 +1,19 @@
 export class RuuviTagBroadcast {
-  id: number
-  mac: number | null
-  temperatureC: number | null
-  pressurePa: number | null
-  humidityRh: number | null
-  batteryVoltageV: number | null
-  accelerationXG: number | null
-  accelerationYG: number | null
-  accelerationZG: number | null
-  movementCounter: number | null
-  measurementSequence: number | null
-  txPowerDBm: number | null
-  rssiDB: number | null
-  dataFormat: number | null
-  parsedAt: Date
+  public id: number
+  public mac: number | null
+  public temperatureC: number | null
+  public pressurePa: number | null
+  public humidityRh: number | null
+  public batteryVoltageV: number | null
+  public accelerationXG: number | null
+  public accelerationYG: number | null
+  public accelerationZG: number | null
+  public movementCounter: number | null
+  public measurementSequence: number | null
+  public txPowerDBm: number | null
+  public rssiDB: number | null
+  public dataFormat: number | null
+  public parsedAt: Date
 
   public constructor(
     id: number = 0,
@@ -52,9 +52,9 @@ export class RuuviTagBroadcast {
 };
 
 export class RuuviTagDevice {
-  id:  number | null
-  mac:  number | null
-  handle: any
+  public id:  number | null
+  public mac:  number | null
+  public handle: any
 
   public constructor(
     id: number = 0,

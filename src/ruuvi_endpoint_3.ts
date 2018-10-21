@@ -21,42 +21,42 @@ export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
   if(3 != data[0]){ throw new Error('Not DF3 data'); }
 
   let humidity = data[humidityStart];
-  humidity/= 2; //scale
-  robject.humidity_rh = humidity;
+  humidity/= 2; // scale
+  robject.humidityRh = humidity;
 
   let temperatureBytes = data.slice(temperatureStart, temperatureEnd);
-  let temperature = temperatureBytes[0]  //Full degrees
-  temperature += temperatureBytes[1]/100.0; //Decimals
+  let temperature = temperatureBytes[0]  // Full degrees
+  temperature += temperatureBytes[1]/100.0; // Decimals
   if(temperature > 128){           // Ruuvi format, sign bit + value
     temperature = temperature-128; 
     temperature = 0 - temperature; 
   }
-  robject.temperature_c = temperature;
+  robject.temperatureC = temperature;
 
   let pressureBytes = data.slice(pressureStart, pressureEnd)  // uint16_t pascals
   let pressure = (pressureBytes[0]*256) + pressureBytes[1];
-  pressure += 50000; //Ruuvi format
-  robject.pressure_pa = pressure;
+  pressure += 50000; // Ruuvi format
+  robject.pressurePa = pressure;
 
   let accelerationBytes = data.slice(accelerationXStart, accelerationXEnd);  // milli-g
   let accelerationX = (accelerationBytes[0]*256) + accelerationBytes[1];
-  if(accelerationX > 32767){ accelerationX -= 65536;}  //two's complement
+  if(accelerationX > 32767){ accelerationX -= 65536;}  // two's complement
 
   accelerationBytes = data.slice(accelerationYStart, accelerationYEnd);  // milli-g
   let accelerationY = (accelerationBytes[0]*256) + accelerationBytes[1];
-  if(accelerationY > 32767){ accelerationY -= 65536;}  //two's complement
+  if(accelerationY > 32767){ accelerationY -= 65536;}  // two's complement
 
   accelerationBytes = data.slice(accelerationZStart, accelerationZEnd);  // milli-g
   let accelerationZ = (accelerationBytes[0]*256) + accelerationBytes[1];
-  if(accelerationZ > 32767){ accelerationZ -= 65536;}  //two's complement
+  if(accelerationZ > 32767){ accelerationZ -= 65536;}  // two's complement
 
-  robject.accelerationX_g = accelerationX / 1000.0;
-  robject.accelerationY_g = accelerationY / 1000.0;
-  robject.accelerationZ_g = accelerationZ / 1000.0;
+  robject.accelerationXG = accelerationX / 1000.0;
+  robject.accelerationYG = accelerationY / 1000.0;
+  robject.accelerationZG = accelerationZ / 1000.0;
   
   let batteryBytes = data.slice(batteryStart, batteryEnd);  // milli volts
   let battery = (batteryBytes[0]*256) + batteryBytes[1];
-  robject.batteryVoltage_v = battery/1000.0;
+  robject.batteryVoltageV = battery/1000.0;
   robject.dataFormat = 3;
 
   return robject;
