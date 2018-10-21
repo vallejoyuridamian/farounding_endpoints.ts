@@ -1,4 +1,4 @@
-import { RuuviTagBroadcast } from '../ruuvitag';
+import { RuuviTagBroadcast } from '../ruuvitagbroadcast';
 import { df3parser } from '../ruuvi_endpoint_3';
 
 /* https://gist.github.com/tauzen/3d18825ae41ff3fc8981 */

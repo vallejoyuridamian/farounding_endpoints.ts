@@ -1,4 +1,4 @@
-import { RuuviTagBroadcast } from './ruuvitag'
+import { RuuviTagBroadcast } from './ruuvitagbroadcast'
 
   const humidityStart      = 1;
   const humidityEnd        = humidityStart+1;
@@ -17,14 +17,14 @@ import { RuuviTagBroadcast } from './ruuvitag'
 
 export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
 {
-  let robject: RuuviTagBroadcast = new RuuviTagBroadcast;
+  const robject: RuuviTagBroadcast = new RuuviTagBroadcast;
   if(3 != data[0]){ throw new Error('Not DF3 data'); }
 
   let humidity = data[humidityStart];
   humidity/= 2; // scale
   robject.humidityRh = humidity;
 
-  let temperatureBytes = data.slice(temperatureStart, temperatureEnd);
+  const temperatureBytes = data.slice(temperatureStart, temperatureEnd);
   let temperature = temperatureBytes[0]  // Full degrees
   temperature += temperatureBytes[1]/100.0; // Decimals
   if(temperature > 128){           // Ruuvi format, sign bit + value
@@ -33,7 +33,7 @@ export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
   }
   robject.temperatureC = temperature;
 
-  let pressureBytes = data.slice(pressureStart, pressureEnd)  // uint16_t pascals
+  const pressureBytes = data.slice(pressureStart, pressureEnd)  // uint16_t pascals
   let pressure = (pressureBytes[0]*256) + pressureBytes[1];
   pressure += 50000; // Ruuvi format
   robject.pressurePa = pressure;
@@ -54,7 +54,7 @@ export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
   robject.accelerationYG = accelerationY / 1000.0;
   robject.accelerationZG = accelerationZ / 1000.0;
   
-  let batteryBytes = data.slice(batteryStart, batteryEnd);  // milli volts
+  const batteryBytes = data.slice(batteryStart, batteryEnd);  // milli volts
   let battery = (batteryBytes[0]*256) + batteryBytes[1];
   robject.batteryVoltageV = battery/1000.0;
   robject.dataFormat = 3;
