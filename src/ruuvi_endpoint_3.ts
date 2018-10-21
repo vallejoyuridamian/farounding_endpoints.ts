@@ -34,20 +34,20 @@ export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
   robject.temperature_c = temperature;
 
   let pressureBytes = data.slice(pressureStart, pressureEnd)  // uint16_t pascals
-  let pressure = (pressureBytes[0]<<8) + pressureBytes[1];
+  let pressure = (pressureBytes[0]*256) + pressureBytes[1];
   pressure += 50000; //Ruuvi format
   robject.pressure_pa = pressure;
 
   let accelerationBytes = data.slice(accelerationXStart, accelerationXEnd);  // milli-g
-  let accelerationX = (accelerationBytes[0]<<8) + accelerationBytes[1];
+  let accelerationX = (accelerationBytes[0]*256) + accelerationBytes[1];
   if(accelerationX > 32767){ accelerationX -= 65536;}  //two's complement
 
   accelerationBytes = data.slice(accelerationYStart, accelerationYEnd);  // milli-g
-  let accelerationY = (accelerationBytes[0]<<8) + accelerationBytes[1];
+  let accelerationY = (accelerationBytes[0]*256) + accelerationBytes[1];
   if(accelerationY > 32767){ accelerationY -= 65536;}  //two's complement
 
   accelerationBytes = data.slice(accelerationZStart, accelerationZEnd);  // milli-g
-  let accelerationZ = (accelerationBytes[0]<<8) + accelerationBytes[1];
+  let accelerationZ = (accelerationBytes[0]*256) + accelerationBytes[1];
   if(accelerationZ > 32767){ accelerationZ -= 65536;}  //two's complement
 
   robject.accelerationX_g = accelerationX / 1000.0;
@@ -55,7 +55,7 @@ export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
   robject.accelerationZ_g = accelerationZ / 1000.0;
   
   let batteryBytes = data.slice(batteryStart, batteryEnd);  // milli volts
-  let battery = (batteryBytes[0]<<8) + batteryBytes[1];
+  let battery = (batteryBytes[0]*256) + batteryBytes[1];
   robject.batteryVoltage_v = battery/1000.0;
   robject.dataFormat = 3;
 
