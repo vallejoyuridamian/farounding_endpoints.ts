@@ -18,7 +18,7 @@ import { RuuviTagBroadcast } from './ruuvitagbroadcast'
 export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
 {
   const robject: RuuviTagBroadcast = new RuuviTagBroadcast;
-  if(3 != data[0]){ throw new Error('Not DF3 data'); }
+  if(3 !== data[0]){ throw new Error('Not DF3 data'); }
 
   let humidity = data[humidityStart];
   humidity/= 2; // scale
@@ -55,7 +55,7 @@ export const df3parser = (data: Uint8Array): RuuviTagBroadcast =>
   robject.accelerationZG = accelerationZ / 1000.0;
   
   const batteryBytes = data.slice(batteryStart, batteryEnd);  // milli volts
-  let battery = (batteryBytes[0]*256) + batteryBytes[1];
+  const battery = (batteryBytes[0]*256) + batteryBytes[1];
   robject.batteryVoltageV = battery/1000.0;
   robject.dataFormat = 3;
 
