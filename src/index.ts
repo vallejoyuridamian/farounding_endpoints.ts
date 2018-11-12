@@ -4,12 +4,15 @@ import { df3parser } from './ruuvi_endpoint_3';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
 export * from './batterybroadcast';
+export * from './blebroadcast';
 export * from './ojousima_endpoint_ba';
 export * from './ruuvitagbroadcast';
 export * from './ruuvi_endpoint_3';
 
 /**
- * Return correct parser for given data format
+ * Return correct parser for given data
+ *
+ * @parameter data: Uint8Array to parse, starting with header byte
  */
 export type manufacturerDataParser = (data: Uint8Array) => RuuviTagBroadcast | BatteryBroadcast;
 
