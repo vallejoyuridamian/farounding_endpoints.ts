@@ -4,5 +4,5 @@ import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
 export class BleBroadcast {
   public data: BatteryBroadcast | RuuviTagBroadcast;
-  public peripheral: Noble.Peripheral; 
+  public peripheral: Noble.Peripheral;
 }
