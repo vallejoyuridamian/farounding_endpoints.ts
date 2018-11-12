@@ -1,4 +1,28 @@
+import { BatteryBroadcast } from './batterybroadcast';
+import { dfbaparser } from './ojousima_endpoint_ba';
+import { df3parser } from './ruuvi_endpoint_3';
+import { RuuviTagBroadcast } from './ruuvitagbroadcast';
+
+
 export * from './batterybroadcast';
 export * from './ojousima_endpoint_ba';
 export * from './ruuvitagbroadcast';
 export * from './ruuvi_endpoint_3';
+
+/**
+ * Return correct parser for given data format
+ */
+ export type manufacturerDataParser = (data: Uint8Array) => RuuviTagBroadcast | BatteryBroadcast;
+
+
+export function getParser(data: Uint8Array) : manufacturerDataParser {
+  let parser: manufacturerDataParser;
+  if (3 === data[0]) {
+    parser = df3parser;
+  } else if (0xba !== data[0]) {
+    parser = dfbaparser;
+  } else {
+    throw new Error('Unknown data');
+  }
+  return parser;
+}
