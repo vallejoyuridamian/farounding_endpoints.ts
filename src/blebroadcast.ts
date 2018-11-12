@@ -1,3 +1,4 @@
+import * as Noble from 'noble';
 import { BatteryBroadcast } from './batterybroadcast';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
