@@ -7,11 +7,11 @@ export class BleBroadcast {
   public peripheral: Noble.Peripheral;
 
   public constructor(
-    _data: BatteryBroadcast | RuuviTagBroadcast,
-    _peripheral: Noble.Peripheral
+    data: BatteryBroadcast | RuuviTagBroadcast,
+    peripheral: Noble.Peripheral
     )
   {
-    this.data = _data;
-    this.peripheral = _peripheral;
+    this.data = data;
+    this.peripheral = peripheral;
   }
 }
