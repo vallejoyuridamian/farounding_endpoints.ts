@@ -21,7 +21,7 @@ export function getParser(data: Uint8Array): manufacturerDataParser {
   let parser: manufacturerDataParser;
   if (3 === data[0]) {
     parser = df3parser;
-  }else if (0x05 === data[0]) {
+  } else if (0x05 === data[0]) {
     parser = df3parser;
   } else if (0xba === data[0]) {
     parser = dfbaparser;
