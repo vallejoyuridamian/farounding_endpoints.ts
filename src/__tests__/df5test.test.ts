@@ -16,23 +16,35 @@ function hexStringToByte(str: string): Uint8Array {
 }
 
 test('test_df5decode_is_valid', () => {
-  const data_format = '05'
-  const temp = '12FC'
-  const humidity = '5394'
-  const pressure = 'C37C'
-  const accX = '0004'
-  const accY = 'FFFC'
-  const accZ = '040C'
-  const power_info = 'AC36'
-  const movement_counter = '42'
-  const measurement_sequence = '00CD'
-  const mac = 'CBB8334C884F'
-  const data: Uint8Array = hexStringToByte(data_format + temp + humidity + pressure + accX + accY + accZ + power_info + movement_counter + measurement_sequence +mac);
+  const data_format = '05';
+  const temp = '12FC';
+  const humidity = '5394';
+  const pressure = 'C37C';
+  const accX = '0004';
+  const accY = 'FFFC';
+  const accZ = '040C';
+  const power_info = 'AC36';
+  const movement_counter = '42';
+  const measurement_sequence = '00CD';
+  const mac = 'CBB8334C884F';
+  const data: Uint8Array = hexStringToByte(
+    data_format +
+      temp +
+      humidity +
+      pressure +
+      accX +
+      accY +
+      accZ +
+      power_info +
+      movement_counter +
+      measurement_sequence +
+      mac,
+  );
   let tag: RuuviTagBroadcast = df5parser(data);
 
   expect(tag.dataFormat).toBe(5);
 
-  expect(tag.temperatureC).toBeCloseTo(24.30, 2);
+  expect(tag.temperatureC).toBeCloseTo(24.3, 2);
   expect(tag.humidityRh).toBeCloseTo(53.49, 2);
   expect(tag.pressurePa).toBeCloseTo(100044, 1);
   expect(tag.accelerationXG).toBeCloseTo(0.004, 3);
