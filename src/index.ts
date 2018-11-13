@@ -1,6 +1,7 @@
 import { BatteryBroadcast } from './batterybroadcast';
 import { dfbaparser } from './ojousima_endpoint_ba';
 import { df3parser } from './ruuvi_endpoint_3';
+import { df5parser } from './ruuvi_endpoint_5';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
 export * from './batterybroadcast';
@@ -19,6 +20,8 @@ export type manufacturerDataParser = (data: Uint8Array) => RuuviTagBroadcast | B
 export function getParser(data: Uint8Array): manufacturerDataParser {
   let parser: manufacturerDataParser;
   if (3 === data[0]) {
+    parser = df3parser;
+  }else if (0x05 === data[0]) {
     parser = df3parser;
   } else if (0xba === data[0]) {
     parser = dfbaparser;
