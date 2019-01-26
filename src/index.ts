@@ -6,6 +6,7 @@ import { df3parser } from './ruuvi_endpoint_3';
 import { df5parser } from './ruuvi_endpoint_5';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
+export * from './accelerationbroadcast';
 export * from './batterybroadcast';
 export * from './blebroadcast';
 export * from './ojousima_endpoint_ac';
