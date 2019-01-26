@@ -30,7 +30,7 @@ export class RuuviTagBroadcast {
     txPowerDBm: number | null = null,
     rssiDB: number | null = null,
     dataFormat: number | null = null,
-    parsedAt: Date = new Date()
+    parsedAt: Date = new Date(),
   ) {
     this.id = id;
     this.mac = mac;

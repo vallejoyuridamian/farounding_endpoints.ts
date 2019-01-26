@@ -1,6 +1,6 @@
 {
   "name": "ojousima.ruuvi_endpoints.ts",
-  "version": "3.4.1",
+  "version": "3.5.0",
   "description": "Experiments with RuuviTags and TS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
