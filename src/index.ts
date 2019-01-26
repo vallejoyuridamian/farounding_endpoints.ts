@@ -1,4 +1,6 @@
+import { AccelerationBroadcast } from './accelerationbroadcast';
 import { BatteryBroadcast } from './batterybroadcast';
+import { dfacparser } from './ojousima_endpoint_ac';
 import { dfbaparser } from './ojousima_endpoint_ba';
 import { df3parser } from './ruuvi_endpoint_3';
 import { df5parser } from './ruuvi_endpoint_5';
@@ -6,6 +8,7 @@ import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
 export * from './batterybroadcast';
 export * from './blebroadcast';
+export * from './ojousima_endpoint_ac';
 export * from './ojousima_endpoint_ba';
 export * from './ruuvitagbroadcast';
 export * from './ruuvi_endpoint_3';
@@ -15,7 +18,7 @@ export * from './ruuvi_endpoint_3';
  *
  * @parameter data: Uint8Array to parse, starting with header byte
  */
-export type manufacturerDataParser = (data: Uint8Array) => RuuviTagBroadcast | BatteryBroadcast;
+export type manufacturerDataParser = (data: Uint8Array) => AccelerationBroadcast | RuuviTagBroadcast | BatteryBroadcast;
 
 export function getParser(data: Uint8Array): manufacturerDataParser {
   let parser: manufacturerDataParser;
@@ -25,6 +28,8 @@ export function getParser(data: Uint8Array): manufacturerDataParser {
     parser = df3parser;
   } else if (0xba === data[0]) {
     parser = dfbaparser;
+  } else if (0xac === data[0]) {
+    parser = dfacparser;
   } else {
     throw new Error('Unknown data');
   }

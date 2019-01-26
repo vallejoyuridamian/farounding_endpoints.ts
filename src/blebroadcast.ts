@@ -1,14 +1,15 @@
 import * as Noble from 'noble';
+import { AccelerationBroadcast } from './accelerationbroadcast';
 import { BatteryBroadcast } from './batterybroadcast';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
 export class BleBroadcast {
-  public readonly data: BatteryBroadcast | RuuviTagBroadcast;
+  public readonly data: AccelerationBroadcast | BatteryBroadcast | RuuviTagBroadcast;
   public readonly peripheral: Noble.Peripheral;
   public readonly manufacturerId: number;
 
   public constructor(
-    data: BatteryBroadcast | RuuviTagBroadcast | null,
+    data: AccelerationBroadcast | BatteryBroadcast | RuuviTagBroadcast | null,
     peripheral: Noble.Peripheral,
     manufacturer: number | null,
   ) {
