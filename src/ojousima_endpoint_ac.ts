@@ -26,7 +26,7 @@ const measurementStart = batteryVEnd;
 const measurementEnd = measurementStart + 2;
 
 const bytestou16 = (data: Uint8Array): number => {
-  let n = data[0] * 256 + data[1];
+  const n = data[0] * 256 + data[1];
   // Number is in units of 0.001 G -> divide by 1000
   return n / 1000;
 };
