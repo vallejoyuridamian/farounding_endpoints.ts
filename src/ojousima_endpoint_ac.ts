@@ -25,12 +25,8 @@ const batteryVEnd = batteryVStart + 2;
 const measurementStart = batteryVEnd;
 const measurementEnd = measurementStart + 2;
 
-const bytestoi16 = (data: Uint8Array): number => {
+const bytestou16 = (data: Uint8Array): number => {
   let n = data[0] * 256 + data[1];
-  // two's complement
-  if (n > 32767) {
-    n -= 65536;
-  }
   // Number is in units of 0.001 G -> divide by 1000
   return n / 1000;
 };
@@ -45,19 +41,19 @@ export const dfacparser = (data: Uint8Array): AccelerationBroadcast => {
   const version = data[versionStart];
   robject.version = version;
 
-  robject.p2pXG = bytestoi16(data.slice(p2pXStart, p2pXEnd));
-  robject.p2pYG = bytestoi16(data.slice(p2pYStart, p2pYEnd));
-  robject.p2pZG = bytestoi16(data.slice(p2pZStart, p2pZEnd));
+  robject.p2pXG = bytestou16(data.slice(p2pXStart, p2pXEnd));
+  robject.p2pYG = bytestou16(data.slice(p2pYStart, p2pYEnd));
+  robject.p2pZG = bytestou16(data.slice(p2pZStart, p2pZEnd));
 
-  robject.rmsXG = bytestoi16(data.slice(rmsXStart, rmsXEnd));
-  robject.rmsYG = bytestoi16(data.slice(rmsYStart, rmsYEnd));
-  robject.rmsZG = bytestoi16(data.slice(rmsZStart, rmsZEnd));
+  robject.rmsXG = bytestou16(data.slice(rmsXStart, rmsXEnd));
+  robject.rmsYG = bytestou16(data.slice(rmsYStart, rmsYEnd));
+  robject.rmsZG = bytestou16(data.slice(rmsZStart, rmsZEnd));
 
-  robject.devXG = bytestoi16(data.slice(devXStart, devXEnd));
-  robject.devYG = bytestoi16(data.slice(devYStart, devYEnd));
-  robject.devZG = bytestoi16(data.slice(devZStart, devZEnd));
+  robject.devXG = bytestou16(data.slice(devXStart, devXEnd));
+  robject.devYG = bytestou16(data.slice(devYStart, devYEnd));
+  robject.devZG = bytestou16(data.slice(devZStart, devZEnd));
 
-  robject.batteryVoltageV = bytestoi16(data.slice(batteryVStart, batteryVEnd));
+  robject.batteryVoltageV = bytestou16(data.slice(batteryVStart, batteryVEnd));
 
   const measurementBytes = data.slice(measurementStart, measurementEnd);
   const measurement = measurementBytes[0] * 256 + measurementBytes[1];
