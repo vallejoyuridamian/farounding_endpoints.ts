@@ -13,6 +13,7 @@ export * from './ojousima_endpoint_ac';
 export * from './ojousima_endpoint_ba';
 export * from './ruuvitagbroadcast';
 export * from './ruuvi_endpoint_3';
+export * from './ruuvi_endpoint_5';
 
 /**
  * Return correct parser for given data
@@ -26,7 +27,7 @@ export function getParser(data: Uint8Array): manufacturerDataParser {
   if (3 === data[0]) {
     parser = df3parser;
   } else if (0x05 === data[0]) {
-    parser = df3parser;
+    parser = df5parser;
   } else if (0xba === data[0]) {
     parser = dfbaparser;
   } else if (0xac === data[0]) {
