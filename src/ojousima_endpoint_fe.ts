@@ -93,7 +93,7 @@ export const dffeparser = (data: Uint8Array): RuuviTagBroadcast => {
  * @param unitpw: Unit-specific password used in encryption. 
  */
 export const dffeunencrypter = (data: Uint8Array, basepw: Uint8Array, unitpw: Uint8Array): Uint8Array => {
-  if(16 !== (basepw.length + unitpw.length)
+  if(16 !== (basepw.length + unitpw.length))
   {
     throw new Error("Invalid base+unit password length. Expected 16, got " + (basepw.length + unitpw.length).toString());
   }
