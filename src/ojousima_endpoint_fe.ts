@@ -1,7 +1,6 @@
 import { AES, ModeOfOperation } from 'aes-js';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 
-
 const dataFormatStart = 0;
 const dataFormatEnd = dataFormatStart + 1;
 const versionStart = dataFormatEnd;
@@ -43,7 +42,7 @@ export const dffeparser = (data: Uint8Array): RuuviTagBroadcast => {
   }
   const robject: RuuviTagBroadcast = new RuuviTagBroadcast();
   robject.dataFormat = data[dataFormatStart];
-    let humidity = data[humidityStart];
+  let humidity = data[humidityStart];
   humidity /= 2; // scale
   robject.humidityRh = humidity;
 
@@ -93,9 +92,10 @@ export const dffeparser = (data: Uint8Array): RuuviTagBroadcast => {
  * @param unitpw: Unit-specific password used in encryption. 
  */
 export const dffeunencrypter = (data: Uint8Array, basepw: Uint8Array, unitpw: Uint8Array): Uint8Array => {
-  if(16 !== (basepw.length + unitpw.length))
-  {
-    throw new Error("Invalid base+unit password length. Expected 16, got " + (basepw.length + unitpw.length).toString());
+  if (16 !== basepw.length + unitpw.length) {
+    throw new Error(
+      'Invalid base+unit password length. Expected 16, got ' + (basepw.length + unitpw.length).toString(),
+    );
   }
   const key: Uint8Array = new Uint8Array(basepw.length + unitpw.length);
   key.set(basepw);
@@ -104,11 +104,11 @@ export const dffeunencrypter = (data: Uint8Array, basepw: Uint8Array, unitpw: Ui
   const aesEcb = new ModeOfOperation.ecb(key);
 
   // All fe data starts with header + version, followed by encrypted 16-byte payload
-  const encryptedBytes: Uint8Array = data.subarray(2, 2+16);
+  const encryptedBytes: Uint8Array = data.subarray(2, 2 + 16);
 
   // Since electronic codebook does not store state, we can
   // reuse the same instance.
   const decryptedBytes: Uint8Array = aesEcb.decrypt(encryptedBytes);
 
   return decryptedBytes;
-}
+};
