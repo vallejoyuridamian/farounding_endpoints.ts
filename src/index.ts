@@ -12,6 +12,7 @@ export * from './batterybroadcast';
 export * from './blebroadcast';
 export * from './ojousima_endpoint_ac';
 export * from './ojousima_endpoint_ba';
+export * from './ojousima_endpoint_fe';
 export * from './ruuvitagbroadcast';
 export * from './ruuvi_endpoint_3';
 export * from './ruuvi_endpoint_5';
