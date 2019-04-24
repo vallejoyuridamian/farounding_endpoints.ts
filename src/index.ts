@@ -2,6 +2,7 @@ import { AccelerationBroadcast } from './accelerationbroadcast';
 import { BatteryBroadcast } from './batterybroadcast';
 import { dfacparser } from './ojousima_endpoint_ac';
 import { dfbaparser } from './ojousima_endpoint_ba';
+import { dffeparser } from './ojousima_endpoint_fe';
 import { df3parser } from './ruuvi_endpoint_3';
 import { df5parser } from './ruuvi_endpoint_5';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
@@ -32,6 +33,8 @@ export function getParser(data: Uint8Array): manufacturerDataParser {
     parser = dfbaparser;
   } else if (0xac === data[0]) {
     parser = dfacparser;
+  } else if (0xfe === data[0]) {
+    parser = dffeparser;
   } else {
     throw new Error('Unknown data');
   }
