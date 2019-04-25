@@ -7,10 +7,7 @@ const versionStart = dataFormatEnd;
 const versionEnd = versionStart + 1;
 const versionInvalid = 255;
 
-/**
- * Indexes relative to encrypted sect
- */
-const addressStart = 0;
+const addressStart = versionEnd;
 const addressEnd = addressStart + 6;
 const addressInvalid = 0xffffffffffff;
 
@@ -33,6 +30,14 @@ const sequenceStart = batteryEnd;
 const sequenceEnd = sequenceStart + 2;
 const sequenceInvalid = 0xffff;
 
+/*
+ * @brief Parse FE data
+ *
+ * Throws error if header byte is not @c 0xFE or version byte is not @c 0x02
+ *
+ * @param data complete manufacturer data to be parsed, starting from header byte
+ * @return Ruuvi data payload
+ */
 export const dffeparser = (data: Uint8Array): RuuviTagBroadcast => {
   if (data.length < addressEnd - 1 || 0xfe !== data[0]) {
     throw new Error('Not DF5 data');
@@ -60,6 +65,10 @@ export const dffeparser = (data: Uint8Array): RuuviTagBroadcast => {
   let pressure = pressureBytes[0] * 256 + pressureBytes[1];
   pressure += 50000; // Ruuvi format
   robject.pressurePa = pressure;
+
+  const batteryBytes = data.slice(batteryStart, batteryEnd); // millivolts
+  const battery = batteryBytes[0] * 256 + batteryBytes[1];
+  robject.batteryVoltageV = battery / 1000.0;
 
   const sequenceBytes = data.slice(sequenceStart, sequenceEnd);
   const sequence = sequenceBytes[0] * 256 + sequenceBytes[1];
@@ -90,6 +99,8 @@ export const dffeparser = (data: Uint8Array): RuuviTagBroadcast => {
  * @param data complete manufacturer data to be unencrypted, starting from header byte
  * @param basepw: Base password used in encryption
  * @param unitpw: Unit-specific password used in encryption. 
+ * @return unencrypted FE data.
+ * @warning Be careful when converting strings to Uint8Array to avoid UTF-8 encoded values.
  */
 export const dffeunencrypter = (data: Uint8Array, basepw: Uint8Array, unitpw: Uint8Array): Uint8Array => {
   if (16 !== basepw.length + unitpw.length) {
