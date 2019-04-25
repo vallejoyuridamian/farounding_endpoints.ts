@@ -19,7 +19,7 @@ const temperatureStart = humidityEnd;
 const temperatureEnd = temperatureStart + 2;
 const temperatureInvalid = -32768;
 
-const pressureStart = humidityEnd;
+const pressureStart = temperatureEnd;
 const pressureEnd = pressureStart + 2;
 const pressureInvalid = 65535;
 
