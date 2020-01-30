@@ -16,6 +16,7 @@ export * from './ojousima_endpoint_fe';
 export * from './ruuvitagbroadcast';
 export * from './ruuvi_endpoint_3';
 export * from './ruuvi_endpoint_5';
+export * from './ojousima_endpoint_xx';
 
 /**
  * Return correct parser for given data
@@ -37,7 +38,7 @@ export function getParser(data: Uint8Array): manufacturerDataParser {
   } else if (0xfe === data[0]) {
     parser = dffeparser;
   } else {
-    throw new Error('Unknown data');
+    parser = dfxxparser;
   }
   return parser;
 }
