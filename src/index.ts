@@ -3,6 +3,7 @@ import { BatteryBroadcast } from './batterybroadcast';
 import { dfacparser } from './ojousima_endpoint_ac';
 import { dfbaparser } from './ojousima_endpoint_ba';
 import { dffeparser } from './ojousima_endpoint_fe';
+import { dfxxparser } from './ojousima_endpoint_xx';
 import { df3parser } from './ruuvi_endpoint_3';
 import { df5parser } from './ruuvi_endpoint_5';
 import { RuuviTagBroadcast } from './ruuvitagbroadcast';
@@ -13,10 +14,10 @@ export * from './blebroadcast';
 export * from './ojousima_endpoint_ac';
 export * from './ojousima_endpoint_ba';
 export * from './ojousima_endpoint_fe';
+export * from './ojousima_endpoint_xx';
 export * from './ruuvitagbroadcast';
 export * from './ruuvi_endpoint_3';
 export * from './ruuvi_endpoint_5';
-export * from './ojousima_endpoint_xx';
 
 /**
  * Return correct parser for given data
