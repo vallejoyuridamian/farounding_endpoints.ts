@@ -1,6 +1,8 @@
 import { AccelerationBroadcast } from './accelerationbroadcast';
 import { BatteryBroadcast } from './batterybroadcast';
+import { FFTBroadcast } from './fftbroadcast';
 import { dfacparser } from './ojousima_endpoint_ac';
+import { dfafparser } from './ojousima_endpoint_af';
 import { dfbaparser } from './ojousima_endpoint_ba';
 import { dffeparser } from './ojousima_endpoint_fe';
 import { dfxxparser } from './ojousima_endpoint_xx';
@@ -11,7 +13,9 @@ import { RuuviTagBroadcast } from './ruuvitagbroadcast';
 export * from './accelerationbroadcast';
 export * from './batterybroadcast';
 export * from './blebroadcast';
+export * from './fftbroadcast';
 export * from './ojousima_endpoint_ac';
+export * from './ojousima_endpoint_af';
 export * from './ojousima_endpoint_ba';
 export * from './ojousima_endpoint_fe';
 export * from './ojousima_endpoint_xx';
@@ -24,7 +28,7 @@ export * from './ruuvi_endpoint_5';
  *
  * @parameter data: Uint8Array to parse, starting with header byte
  */
-export type manufacturerDataParser = (data: Uint8Array) => AccelerationBroadcast | RuuviTagBroadcast | BatteryBroadcast;
+export type manufacturerDataParser = (data: Uint8Array) => AccelerationBroadcast | RuuviTagBroadcast | BatteryBroadcast | FFTBroadcast;
 
 export function getParser(data: Uint8Array): manufacturerDataParser {
   let parser: manufacturerDataParser;
@@ -36,6 +40,8 @@ export function getParser(data: Uint8Array): manufacturerDataParser {
     parser = dfbaparser;
   } else if (0xac === data[0]) {
     parser = dfacparser;
+  } else if (0xaf === data[0]) {
+    parser = dfafparser;
   } else if (0xfe === data[0]) {
     parser = dffeparser;
   } else {
