@@ -17,7 +17,7 @@ const bytestou16 = (data: Uint8Array): number => {
   return n / 1000;
 };
 
-const fixed_8_(_ToFload = (data: Uint8Array): number => {
+const fixed88ToFload = (data: Uint8Array): number => {
    const value:number = bytestou16(data);
    return (value / 256);
 };
