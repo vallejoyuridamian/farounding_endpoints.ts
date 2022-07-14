@@ -31,10 +31,15 @@ export const dfafparser = (data: Uint8Array): FFTBroadcast => {
   switch (data[typeStart]) {
     case 0:
       type = 'X';
+      break;
+
     case 1:
       type = 'Y';
+      break;
+
     case 2:
       type = 'Z';
+      break;
 
     default:
       break;
