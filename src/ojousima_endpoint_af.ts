@@ -13,8 +13,7 @@ const bucketEnd = bucketStart + 16;
 
 const bytestou16 = (data: Uint8Array): number => {
   const n = data[0] * 256 + data[1];
-  // Number is in units of 0.001 G -> divide by 1000
-  return n / 1000;
+  return n;
 };
 
 const fixed88ToFload = (data: Uint8Array): number => {
