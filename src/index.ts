@@ -28,7 +28,9 @@ export * from './ruuvi_endpoint_5';
  *
  * @parameter data: Uint8Array to parse, starting with header byte
  */
-export type manufacturerDataParser = (data: Uint8Array) => AccelerationBroadcast | RuuviTagBroadcast | BatteryBroadcast | FFTBroadcast;
+export type manufacturerDataParser = (
+  data: Uint8Array,
+) => AccelerationBroadcast | RuuviTagBroadcast | BatteryBroadcast | FFTBroadcast;
 
 export function getParser(data: Uint8Array): manufacturerDataParser {
   let parser: manufacturerDataParser;

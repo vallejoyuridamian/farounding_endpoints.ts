@@ -98,7 +98,7 @@ export const dffeparser = (data: Uint8Array): RuuviTagBroadcast => {
  *
  * @param data complete manufacturer data to be unencrypted, starting from header byte
  * @param basepw: Base password used in encryption
- * @param unitpw: Unit-specific password used in encryption. 
+ * @param unitpw: Unit-specific password used in encryption.
  * @return unencrypted FE data.
  * @warning Be careful when converting strings to Uint8Array to avoid UTF-8 encoded values.
  */

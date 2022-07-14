@@ -18,8 +18,8 @@ const bytestou16 = (data: Uint8Array): number => {
 };
 
 const fixed88ToFload = (data: Uint8Array): number => {
-   const value:number = bytestou16(data);
-   return (value / 256);
+  const value: number = bytestou16(data);
+  return value / 256;
 };
 
 export const dfafparser = (data: Uint8Array): FFTBroadcast => {
@@ -28,31 +28,29 @@ export const dfafparser = (data: Uint8Array): FFTBroadcast => {
   }
   const dataFormat = 0xac;
   const version = data[versionStart];
-  let type:string = 'unknown';
-  switch(data[typeStart])
-  {
+  let type: string = 'unknown';
+  switch (data[typeStart]) {
     case 0:
-      type = 'X'
+      type = 'X';
     case 1:
-      type = 'Y'
+      type = 'Y';
     case 2:
-      type = 'Z'
+      type = 'Z';
 
     default:
       break;
   }
-  const frequency:number = bytestou16(data.slice(frequencyStart, frequencyEnd));
-  const scale:number = fixed8_8_to_fload(data.slice(scaleStart, scaleEnd));
-  const buckets:number[] = [];
-  for(let ii:number = 0; ii < 16;ii++)
-  {
+  const frequency: number = bytestou16(data.slice(frequencyStart, frequencyEnd));
+  const scale: number = fixed8_8_to_fload(data.slice(scaleStart, scaleEnd));
+  const buckets: number[] = [];
+  for (let ii: number = 0; ii < 16; ii++) {
     buckets[ii] = data[bucketStart + ii];
   }
 
   const id = 0;
   const robject: FFTBroadcast = new FFTBroadcast(
-    id, 
-    null, 
+    id,
+    null,
     version,
     type,
     scale,
@@ -60,6 +58,7 @@ export const dfafparser = (data: Uint8Array): FFTBroadcast => {
     buckets,
     null,
     null,
-    dataFormat);
+    dataFormat,
+  );
   return robject;
 };
