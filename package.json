@@ -1,6 +1,6 @@
 {
   "name": "ojousima.ruuvi_endpoints.ts",
-  "version": "3.10.0",
+  "version": "3.11.0",
   "description": "Experiments with RuuviTags and TS",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,7 +16,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
-    "version": "npm run format && git add -A src lib",
+    "version": "npm run format && git add -A lib",
     "postversion": "git push && git push --tags"
   },
   "repository": {
