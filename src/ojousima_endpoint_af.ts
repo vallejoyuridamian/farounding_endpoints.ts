@@ -17,9 +17,9 @@ const bytestou16 = (data: Uint8Array): number => {
   return n / 1000;
 };
 
-const fixed8_8_to_fload = (data: Uint8Array): number => {
+const fixed_8_(_ToFload = (data: Uint8Array): number => {
    const value:number = bytestou16(data);
-   return (value / (1 << 8));
+   return (value / 256);
 };
 
 export const dfafparser = (data: Uint8Array): FFTBroadcast => {
@@ -43,7 +43,7 @@ export const dfafparser = (data: Uint8Array): FFTBroadcast => {
   }
   const frequency:number = bytestou16(data.slice(frequencyStart, frequencyEnd));
   const scale:number = fixed8_8_to_fload(data.slice(scaleStart, scaleEnd));
-  let buckets:number[] = [];
+  const buckets:number[] = [];
   for(let ii:number = 0; ii < 16;ii++)
   {
     buckets[ii] = data[bucketStart + ii];
