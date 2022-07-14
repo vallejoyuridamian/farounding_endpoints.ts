@@ -48,7 +48,7 @@ export const dfafparser = (data: Uint8Array): FFTBroadcast => {
   const scale: number = fixed88ToFload(data.slice(scaleStart, scaleEnd));
   const buckets: number[] = [];
   for (let ii: number = 0; ii < 16; ii++) {
-    buckets[ii] = data[bucketStart + ii];
+    buckets[ii] = data[bucketStart + ii] / scale;
   }
 
   const id = 0;

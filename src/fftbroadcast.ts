@@ -30,10 +30,7 @@ export class FFTBroadcast {
     this.type = type;
     this.scale = scale;
     this.frequency = frequency;
-    this.buckets = [];
-    for (let ii: number = 0; ii++; ii < buckets.length) {
-      this.buckets.push(buckets[ii] / scale);
-    }
+    this.buckets = buckets;
     this.measurementSequence = measurementSequence;
     this.rssiDB = rssiDB;
     this.dataFormat = dataFormat;
