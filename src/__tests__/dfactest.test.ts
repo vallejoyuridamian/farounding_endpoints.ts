@@ -16,7 +16,7 @@ function hexStringToByte(str: string): Uint8Array {
 }
 
 test('test_dfbadecode_is_valid', () => {
-  let data: Uint8Array = hexStringToByte('AC00007900790079007900790079007900790079AF000001');
+  let data: Uint8Array = hexStringToByte('AC00007900790079007900790079007900790079AF100001');
   let tag: AccelerationBroadcast = dfacparser(data);
   expect(tag.version).toBe(0);
   expect(tag.dataFormat).toBe(0xac);
@@ -30,5 +30,6 @@ test('test_dfbadecode_is_valid', () => {
   expect(tag.devYG).toBeCloseTo(0.121, 2);
   expect(tag.devZG).toBeCloseTo(0.121, 3);
   expect(tag.batteryVoltageV).toBeCloseTo(3.0, 3);
+  expect(tag.temperatureC).toBeCloseTo(16, 3);
   expect(tag.measurementSequence).toBe(1);
 });

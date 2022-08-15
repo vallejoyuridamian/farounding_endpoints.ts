@@ -21,8 +21,10 @@ const devYEnd = devYStart + 2;
 const devZStart = devYEnd;
 const devZEnd = devZStart + 2;
 const batteryVStart = devZEnd;
-const batteryVEnd = batteryVStart + 2;
-const measurementStart = batteryVEnd;
+const batteryVEnd = batteryVStart + 1;
+const temperatureCStart = batteryVEnd;
+const temperatureCEnd = temperatureCStart + 1;
+const measurementStart = temperatureCEnd;
 const measurementEnd = measurementStart + 2;
 
 const bytestou16 = (data: Uint8Array): number => {
@@ -53,8 +55,16 @@ export const dfacparser = (data: Uint8Array): AccelerationBroadcast => {
   robject.devYG = bytestou16(data.slice(devYStart, devYEnd));
   robject.devZG = bytestou16(data.slice(devZStart, devZEnd));
 
-  const batteryBytes = data.slice(batteryVStart, batteryVStart + 1);
+  const batteryBytes = data.slice(batteryVStart, batteryVEnd);
   robject.batteryVoltageV = (batteryBytes[0] * 8 + 1600) / 1000;
+
+  const temperatureBytes = data.slice(temperatureCStart, temperatureCEnd + 1);
+  let temperatureC = temperatureBytes[0];
+  if(temperatureC > 127)
+  {
+    temperatureC -= 256;
+  }
+  robject.temperatureC = temperatureC;
 
   const measurementBytes = data.slice(measurementStart, measurementEnd);
   const measurement = measurementBytes[0] * 256 + measurementBytes[1];

@@ -12,6 +12,7 @@ export class AccelerationBroadcast {
   public devYG: number | null;
   public devZG: number | null;
   public batteryVoltageV: number | null;
+  public temperatureC: number | null;
   public measurementSequence: number | null;
   public rssiDB: number | null;
   public dataFormat: number | null;
@@ -31,6 +32,7 @@ export class AccelerationBroadcast {
     devYG: number | null = null,
     devZG: number | null = null,
     batteryVoltageV: number | null = null,
+    temperatureC:  number | null = null,
     measurementSequence: number | null = null,
     rssiDB: number | null = null,
     dataFormat: number | null = null,
@@ -49,6 +51,7 @@ export class AccelerationBroadcast {
     this.devYG = devYG;
     this.devZG = devZG;
     this.batteryVoltageV = batteryVoltageV;
+    this.temperatureC = temperatureC;
     this.measurementSequence = measurementSequence;
     this.rssiDB = rssiDB;
     this.dataFormat = dataFormat;
