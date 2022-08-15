@@ -54,7 +54,7 @@ export const dfacparser = (data: Uint8Array): AccelerationBroadcast => {
   robject.devZG = bytestou16(data.slice(devZStart, devZEnd));
 
   const batteryBytes = data.slice(batteryVStart, batteryVStart + 1);
-  robject.batteryVoltageV = (batteryBytes[0] * 256 + 1600) / 1000;
+  robject.batteryVoltageV = (batteryBytes[0] * 8 + 1600) / 1000;
 
   const measurementBytes = data.slice(measurementStart, measurementEnd);
   const measurement = measurementBytes[0] * 256 + measurementBytes[1];
