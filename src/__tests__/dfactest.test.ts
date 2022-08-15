@@ -16,7 +16,7 @@ function hexStringToByte(str: string): Uint8Array {
 }
 
 test('test_dfbadecode_is_valid', () => {
-  let data: Uint8Array = hexStringToByte('AC000079007900790079007900790079007900790BB80001');
+  let data: Uint8Array = hexStringToByte('AC00007900790079007900790079007900790079AF000001');
   let tag: AccelerationBroadcast = dfacparser(data);
   expect(tag.version).toBe(0);
   expect(tag.dataFormat).toBe(0xac);
