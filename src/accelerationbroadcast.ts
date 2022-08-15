@@ -32,7 +32,7 @@ export class AccelerationBroadcast {
     devYG: number | null = null,
     devZG: number | null = null,
     batteryVoltageV: number | null = null,
-    temperatureC:  number | null = null,
+    temperatureC: number | null = null,
     measurementSequence: number | null = null,
     rssiDB: number | null = null,
     dataFormat: number | null = null,

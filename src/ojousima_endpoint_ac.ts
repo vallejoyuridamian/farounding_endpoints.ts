@@ -60,8 +60,7 @@ export const dfacparser = (data: Uint8Array): AccelerationBroadcast => {
 
   const temperatureBytes = data.slice(temperatureCStart, temperatureCEnd + 1);
   let temperatureC = temperatureBytes[0];
-  if(temperatureC > 127)
-  {
+  if (temperatureC > 127) {
     temperatureC -= 256;
   }
   robject.temperatureC = temperatureC;
